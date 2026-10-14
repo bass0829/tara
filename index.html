@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tara 達拉度母 | 祈福滿願・心靈覺察・殊勝壇城</title>
+  <!-- Google Fonts: Plus Jakarta Sans & Noto Serif TC -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            tara: {
+              ivory: '#FCFDFB',      // 純淨白底
+              card: '#F6FAF6',       // 柔和白綠底色
+              mint: '#48BB78',       // 清新薄荷綠
+              lightmint: '#E8F5E9',  // 極淡薄荷綠光暈
+              sage: '#84A98C',       // 鼠尾草灰綠
+              emerald: '#2D6A4F',    // 經典翠綠
+              deep: '#1B4332',       // 尊貴深墨綠
+              accent: '#52B788',     // 活力亮綠
+              gold: '#C5A059'        // 象徵智慧的光芒金點綴
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            serif: ['"Noto Serif TC"', 'Georgia', 'serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* 質感微漸變與背景光暈 */
+    .bg-tara-mesh {
+      background-color: #FAFDF9;
+      background-image: 
+        radial-gradient(at 10% 20%, rgba(132, 169, 140, 0.12) 0px, transparent 50%),
+        radial-gradient(at 90% 10%, rgba(82, 183, 136, 0.1) 0px, transparent 50%),
+        radial-gradient(at 50% 80%, rgba(232, 245, 233, 0.7) 0px, transparent 60%);
+    }
+
+    /* 滾動淡入基礎狀態 (Scroll Reveal) */
+    .reveal-item {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+
+    .reveal-item.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* 瀑布流容器 */
+    .masonry-grid {
+      column-count: 1;
+      column-gap: 1.5rem;
+    }
+    @media (min-width: 640px) {
+      .masonry-grid {
+        column-count: 2;
+      }
+    }
+    @media (min-width: 1024px) {
+      .masonry-grid {
+        column-count: 3;
+      }
+    }
+    .masonry-item {
+      break-inside: avoid;
+      margin-bottom: 1.5rem;
+    }
+
+    /* 燈箱展開動畫 */
+    .lightbox-overlay {
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+  </style>
+</head>
+<body class="bg-tara-ivory text-zinc-800 antialiased font-sans selection:bg-tara-mint selection:text-white">
+
+  <!-- ================= 頂部導覽列 (Glassmorphism Navbar) ================= -->
+  <header id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/75 backdrop-blur-md border-b border-tara-sage/20 py-4 px-6 md:px-12">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <!-- 品牌 Logo -->
+      <a href="#hero" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-tara-emerald to-tara-mint flex items-center justify-center text-white shadow-md shadow-tara-emerald/20 transition-transform duration-300 group-hover:scale-105">
+          <i class="fa-solid fa-seedling text-lg"></i>
+        </div>
+        <div>
+          <div class="font-serif font-bold text-xl tracking-wider text-tara-deep flex items-center gap-1.5">
+            TARA 達拉度母
+            <span class="text-xs px-2 py-0.5 rounded-full bg-tara-lightmint text-tara-emerald font-sans font-medium border border-tara-mint/30">達拉度母</span>
+          </div>
+          <p class="text-[10px] tracking-widest text-zinc-400 uppercase font-sans">Mandala & Spiritual Sanctuary</p>
+        </div>
+      </a>
+
+      <!-- 桌面版導覽連結 -->
+      <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-zinc-600">
+        <a href="#about" class="transition hover:text-tara-emerald hover:underline underline-offset-8 decoration-tara-mint decoration-2">品牌源起</a>
+        <a href="#philosophy" class="transition hover:text-tara-emerald hover:underline underline-offset-8 decoration-tara-mint decoration-2">神諭度母壇城</a>
+        <a href="#gallery" class="transition hover:text-tara-emerald hover:underline underline-offset-8 decoration-tara-mint decoration-2">殊勝典藏</a>
+        <a href="#services" class="transition hover:text-tara-emerald hover:underline underline-offset-8 decoration-tara-mint decoration-2">法會與祈福</a>
+        <a href="#testimonials" class="transition hover:text-tara-emerald hover:underline underline-offset-8 decoration-tara-mint decoration-2">心靈見證</a>
+        <a href="#contact" class="transition hover:text-tara-emerald hover:underline underline-offset-8 decoration-tara-mint decoration-2">參贊聯絡</a>
+      </nav>
+
+      <!-- 右側行動按鈕與漢堡選單 -->
+      <div class="flex items-center gap-3">
+        <a href="#contact" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-tara-deep text-white text-xs font-semibold tracking-wider hover:bg-tara-emerald transition shadow-md shadow-tara-deep/15">
+          <span>預約參贊認供</span>
+          <i class="fa-solid fa-arrow-right text-[10px]"></i>
+        </a>
+        <button id="mobile-toggle" aria-label="Toggle Navigation" class="md:hidden text-zinc-700 hover:text-tara-emerald p-2 text-xl focus:outline-none">
+          <i class="fa-solid fa-bars-staggered"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- 移動端抽屜選單 -->
+    <div id="mobile-menu" class="hidden md:hidden mt-3 pt-3 border-t border-zinc-100 flex-col space-y-3 pb-2 text-sm font-medium text-zinc-700 bg-white/95 rounded-2xl p-4 shadow-xl">
+      <a href="#about" class="mobile-link py-2 px-3 rounded-lg hover:bg-tara-lightmint hover:text-tara-deep">品牌源起 About</a>
+      <a href="#philosophy" class="mobile-link py-2 px-3 rounded-lg hover:bg-tara-lightmint hover:text-tara-deep">神諭度母壇城 Oracle Mandala</a>
+      <a href="#gallery" class="mobile-link py-2 px-3 rounded-lg hover:bg-tara-lightmint hover:text-tara-deep">殊勝典藏 Gallery</a>
+      <a href="#services" class="mobile-link py-2 px-3 rounded-lg hover:bg-tara-lightmint hover:text-tara-deep">祈福與心靈課 Services</a>
+      <a href="#testimonials" class="mobile-link py-2 px-3 rounded-lg hover:bg-tara-lightmint hover:text-tara-deep">見證感應 Testimonials</a>
+      <a href="#contact" class="mobile-link py-2 px-3 rounded-lg bg-tara-deep text-white text-center rounded-full mt-2 font-semibold">參贊與壇城指引</a>
+    </div>
+  </header>
+
+  <!-- ================= HERO 英雄區塊 ================= -->
+  <section id="hero" class="relative min-h-[92vh] pt-32 pb-20 flex items-center justify-center bg-tara-mesh overflow-hidden px-6">
+    <!-- 背景裝飾柔和光暈 -->
+    <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[550px] bg-gradient-to-b from-tara-mint/15 via-tara-sage/10 to-transparent rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-24 -right-20 w-80 h-80 bg-tara-mint/10 rounded-full blur-2xl pointer-events-none"></div>
+
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+      <!-- 標題標籤 -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 border border-tara-sage/30 shadow-sm text-xs font-medium text-tara-emerald mb-8 reveal-item">
+        <span class="w-2 h-2 rounded-full bg-tara-mint animate-pulse"></span>
+        <span>神諭智慧・慈悲庇佑・滿願加持</span>
+      </div>
+
+      <!-- 主標題 -->
+      <h1 class="text-4xl sm:text-6xl md:text-7xl font-serif font-bold text-tara-deep leading-[1.15] mb-6 tracking-tight reveal-item">
+        靜心契入神諭之境<br>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-tara-emerald via-tara-mint to-tara-deep">
+          相遇度母的慈悲之光
+        </span>
+      </h1>
+
+      <!-- 副標題 -->
+      <p class="text-base sm:text-lg text-zinc-600 max-w-2xl mx-auto leading-relaxed mb-10 font-normal reveal-item">
+        承襲尊貴上師殊勝傳承，融會現代心靈覺察與古老度母壇城法益。為現代繁忙生活注入清新安定的精神活水，祈福滿願，除障增慧。
+      </p>
+
+      <!-- 動作按鈕 -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 reveal-item">
+        <a href="#philosophy" class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-tara-deep text-white font-medium hover:bg-tara-emerald transition shadow-lg shadow-tara-deep/20 flex items-center justify-center gap-2">
+          <span>走入壇城哲學</span>
+          <i class="fa-solid fa-arrow-down-long text-sm"></i>
+        </a>
+        <a href="#gallery" class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-white text-tara-deep border border-tara-sage/30 hover:border-tara-mint hover:bg-tara-lightmint/40 transition font-medium">
+          欣賞殊勝法寶結緣
+        </a>
+      </div>
+
+      <!-- 數據指標卡片 (微型統計) -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-16 pt-10 border-t border-tara-sage/20 reveal-item">
+        <div class="text-center p-3">
+          <div class="text-2xl sm:text-3xl font-serif font-bold text-tara-deep">21</div>
+          <div class="text-xs text-zinc-500 mt-1">二十一度母慈悲化身</div>
+        </div>
+        <div class="text-center p-3">
+          <div class="text-2xl sm:text-3xl font-serif font-bold text-tara-emerald">100%</div>
+          <div class="text-xs text-zinc-500 mt-1">清淨傳承與法會如律</div>
+        </div>
+        <div class="text-center p-3">
+          <div class="text-2xl sm:text-3xl font-serif font-bold text-tara-deep">365+</div>
+          <div class="text-xs text-zinc-500 mt-1">壇城長明燈火與祈願</div>
+        </div>
+        <div class="text-center p-3">
+          <div class="text-2xl sm:text-3xl font-serif font-bold text-tara-emerald">萬千</div>
+          <div class="text-xs text-zinc-500 mt-1">信眾滿願感恩見證</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 品牌源起與理念 (About & Core Concept) ================= -->
+  <section id="about" class="py-24 px-6 md:px-12 bg-white relative">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- 左側文案 -->
+        <div class="lg:col-span-5 reveal-item">
+          <div class="inline-block px-3 py-1 bg-tara-lightmint text-tara-emerald rounded-full text-xs font-semibold tracking-wider uppercase mb-3">
+            Origin & Lineage
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-serif font-bold text-tara-deep leading-tight mb-6">
+            神諭度母壇城<br>
+            古老智慧的清新當代演繹
+          </h2>
+          <p class="text-zinc-600 leading-relaxed mb-4 text-justify">
+            「度母」（Tara）象徵著迅速救度與極致溫柔的慈母情懷。在 Oracle Tara，我們致力於打破繁複沉重的刻板藩籬，以清雅純淨的現代美學，構建一座讓心靈深呼吸的神聖空間。
+          </p>
+          <p class="text-zinc-600 leading-relaxed mb-6 text-justify">
+            在尊貴上師清淨傳承引領下，壇城不僅是祈福禮拜的聖地，更是現代人照見本心、轉化焦慮、培育福慧的修行驛站。透過「息、增、懷、誅」四大願力，守護每一位尋求智慧與平靜的行者。
+          </p>
+
+          <div class="flex items-center gap-4 pt-2">
+            <div class="flex -space-x-2">
+              <div class="w-10 h-10 rounded-full border-2 border-white bg-tara-lightmint flex items-center justify-center text-tara-emerald font-bold text-xs"><i class="fa-solid fa-om"></i></div>
+              <div class="w-10 h-10 rounded-full border-2 border-white bg-tara-mint text-white flex items-center justify-center text-xs"><i class="fa-solid fa-feather"></i></div>
+              <div class="w-10 h-10 rounded-full border-2 border-white bg-tara-deep text-white flex items-center justify-center text-xs"><i class="fa-solid fa-gem"></i></div>
+            </div>
+            <div class="text-xs text-zinc-500 font-medium">
+              尊貴上師親自加持・身心靈圓滿對齊
+            </div>
+          </div>
+        </div>
+
+        <!-- 右側三張清爽幾何排版卡片 -->
+        <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6 reveal-item">
+          <!-- 卡片 1 -->
+          <div class="p-8 rounded-3xl bg-tara-card border border-tara-sage/20 hover:border-tara-mint transition-all duration-300 hover:shadow-lg hover:shadow-tara-mint/10">
+            <div class="w-12 h-12 rounded-2xl bg-white text-tara-emerald flex items-center justify-center text-xl shadow-sm mb-6">
+              <i class="fa-solid fa-shield-heart"></i>
+            </div>
+            <h3 class="font-serif font-bold text-xl text-tara-deep mb-3">息災護佑・平復紛擾</h3>
+            <p class="text-sm text-zinc-500 leading-relaxed">
+              平息身心內外的疾苦、焦慮與修行障礙。如初春甘霖般洗滌心塵，帶來清明的安住之力。
+            </p>
+          </div>
+
+          <!-- 卡片 2 -->
+          <div class="p-8 rounded-3xl bg-white border border-tara-sage/25 hover:border-tara-mint transition-all duration-300 hover:shadow-lg hover:shadow-tara-mint/10 sm:translate-y-8">
+            <div class="w-12 h-12 rounded-2xl bg-tara-lightmint text-tara-emerald flex items-center justify-center text-xl shadow-sm mb-6">
+              <i class="fa-solid fa-coins"></i>
+            </div>
+            <h3 class="font-serif font-bold text-xl text-tara-deep mb-3">增益福慧・滿願圓滿</h3>
+            <p class="text-sm text-zinc-500 leading-relaxed">
+              開啟財富、事業、健康與靈性直覺的繁盛。透過壇城供養與善願實踐，匯聚善緣甘露。
+            </p>
+          </div>
+
+          <!-- 卡片 3 -->
+          <div class="p-8 rounded-3xl bg-white border border-tara-sage/25 hover:border-tara-mint transition-all duration-300 hover:shadow-lg hover:shadow-tara-mint/10">
+            <div class="w-12 h-12 rounded-2xl bg-tara-lightmint text-tara-emerald flex items-center justify-center text-xl shadow-sm mb-6">
+              <i class="fa-solid fa-hand-holding-heart"></i>
+            </div>
+            <h3 class="font-serif font-bold text-xl text-tara-deep mb-3">懷愛和合・善緣相聚</h3>
+            <p class="text-sm text-zinc-500 leading-relaxed">
+              增長溫柔而強大的攝受力，化解人際隔閡，在家庭、伴侶與社群中綻放慈愛同理之光。
+            </p>
+          </div>
+
+          <!-- 卡片 4 -->
+          <div class="p-8 rounded-3xl bg-tara-deep text-white shadow-xl hover:shadow-2xl transition-all duration-300 sm:translate-y-8">
+            <div class="w-12 h-12 rounded-2xl bg-white/10 text-tara-mint flex items-center justify-center text-xl shadow-sm mb-6">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+            </div>
+            <h3 class="font-serif font-bold text-xl text-white mb-3">降伏障難・明斷妄念</h3>
+            <p class="text-sm text-zinc-300 leading-relaxed">
+              以如金剛般的智慧利劍，斬斷惡習與業力束縛，讓生命在每一次覺察中重獲自主與光明。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 神諭核心理念 (Oracle Philosophy) ================= -->
+  <section id="philosophy" class="py-24 px-6 md:px-12 bg-tara-card/60 relative border-y border-tara-sage/15">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center max-w-2xl mx-auto mb-16 reveal-item">
+        <span class="text-xs font-semibold tracking-widest text-tara-emerald uppercase bg-tara-lightmint px-3 py-1 rounded-full">Mandala Sanctuary</span>
+        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-tara-deep mt-3 mb-4">祈福滿願壇城認供</h2>
+        <p class="text-zinc-600 text-sm sm:text-base leading-relaxed">
+          度母壇城開放大眾祈福、許願與認供點燈。依據生肖流年與當下心願，與清淨慈悲頻率相呼應。
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- 核心亮點 1 -->
+        <div class="bg-white rounded-3xl p-8 border border-tara-sage/20 relative group hover:-translate-y-2 transition duration-300 shadow-sm reveal-item">
+          <div class="text-4xl text-tara-mint/40 font-serif font-black absolute top-6 right-6 group-hover:text-tara-mint/70 transition">01</div>
+          <div class="w-12 h-12 rounded-xl bg-tara-lightmint text-tara-emerald flex items-center justify-center mb-6 text-xl">
+            <i class="fa-solid fa-fire-flame-curved"></i>
+          </div>
+          <h3 class="font-serif font-bold text-xl text-tara-deep mb-3">生肖流年本命燈</h3>
+          <p class="text-zinc-500 text-sm leading-relaxed mb-6">
+            根據每人年度星宿流轉，於尊勝壇城安奉專屬長生祈福燈，消融太歲沖煞，增盛本命元神活力。
+          </p>
+          <span class="inline-flex items-center text-xs font-semibold text-tara-emerald gap-1 group-hover:gap-2 transition-all">
+            了解認供流程 <i class="fa-solid fa-arrow-right"></i>
+          </span>
+        </div>
+
+        <!-- 核心亮點 2 -->
+        <div class="bg-white rounded-3xl p-8 border border-tara-mint/40 relative group hover:-translate-y-2 transition duration-300 shadow-md reveal-item">
+          <div class="absolute -top-3 left-8 bg-tara-emerald text-white text-[11px] font-medium px-3 py-0.5 rounded-full uppercase tracking-wider">
+            Most Revered
+          </div>
+          <div class="text-4xl text-tara-mint/40 font-serif font-black absolute top-6 right-6 group-hover:text-tara-mint/70 transition">02</div>
+          <div class="w-12 h-12 rounded-xl bg-tara-lightmint text-tara-emerald flex items-center justify-center mb-6 text-xl">
+            <i class="fa-solid fa-spa"></i>
+          </div>
+          <h3 class="font-serif font-bold text-xl text-tara-deep mb-3">二十一度母薈供共修</h3>
+          <p class="text-zinc-500 text-sm leading-relaxed mb-6">
+            定期舉辦殊勝甘露薈供。匯集大眾純淨發心，供養諸佛海會聖眾，迅速圓滿福慧二資糧。
+          </p>
+          <span class="inline-flex items-center text-xs font-semibold text-tara-emerald gap-1 group-hover:gap-2 transition-all">
+            最新法會期程 <i class="fa-solid fa-arrow-right"></i>
+          </span>
+        </div>
+
+        <!-- 核心亮點 3 -->
+        <div class="bg-white rounded-3xl p-8 border border-tara-sage/20 relative group hover:-translate-y-2 transition duration-300 shadow-sm reveal-item">
+          <div class="text-4xl text-tara-mint/40 font-serif font-black absolute top-6 right-6 group-hover:text-tara-mint/70 transition">03</div>
+          <div class="w-12 h-12 rounded-xl bg-tara-lightmint text-tara-emerald flex items-center justify-center mb-6 text-xl">
+            <i class="fa-solid fa-seedling"></i>
+          </div>
+          <h3 class="font-serif font-bold text-xl text-tara-deep mb-3">達拉心靈成長課程</h3>
+          <p class="text-zinc-500 text-sm leading-relaxed mb-6">
+            將神諭智慧融入日常生活情境，提供冥想靜心、能量調頻與心念覺察導引，找回內在主導權。
+          </p>
+          <span class="inline-flex items-center text-xs font-semibold text-tara-emerald gap-1 group-hover:gap-2 transition-all">
+            預約探索體驗 <i class="fa-solid fa-arrow-right"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 瀑布流展示區 (Gallery & Masonry Waterfall) ================= -->
+  <section id="gallery" class="py-24 px-6 md:px-12 bg-white">
+    <div class="max-w-7xl mx-auto">
+      <!-- 標題與分類切換 -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 reveal-item">
+        <div>
+          <span class="text-xs font-semibold tracking-widest text-tara-emerald uppercase bg-tara-lightmint px-3 py-1 rounded-full">Sacred Collections</span>
+          <h2 class="text-3xl sm:text-4xl font-serif font-bold text-tara-deep mt-2">殊勝結緣與典藏視界</h2>
+          <p class="text-zinc-500 text-sm mt-2">心想事成嘎屋、聚財滿願杯、護身法寶與法會莊嚴剪影</p>
+        </div>
+
+        <!-- 篩選標籤 (Filter Buttons) -->
+        <div class="flex flex-wrap gap-2 text-xs font-medium" id="filter-container">
+          <button class="filter-btn active px-4 py-2 rounded-full transition bg-tara-deep text-white" data-filter="all">全部典藏</button>
+          <button class="filter-btn px-4 py-2 rounded-full transition bg-tara-card text-zinc-600 hover:bg-tara-lightmint hover:text-tara-emerald" data-filter="amulet">殊勝法寶</button>
+          <button class="filter-btn px-4 py-2 rounded-full transition bg-tara-card text-zinc-600 hover:bg-tara-lightmint hover:text-tara-emerald" data-filter="ceremony">祈福法會</button>
+          <button class="filter-btn px-4 py-2 rounded-full transition bg-tara-card text-zinc-600 hover:bg-tara-lightmint hover:text-tara-emerald" data-filter="sanctuary">度母壇城</button>
+        </div>
+      </div>
+
+      <!-- 瀑布流網格 (Masonry Grid with Waterfall Animation) -->
+      <div class="masonry-grid" id="masonry-container">
+        <!-- 項目 1 -->
+        <div class="masonry-item gallery-item group cursor-pointer reveal-item" data-category="amulet" onclick="openLightbox(0)">
+          <div class="relative overflow-hidden rounded-3xl bg-tara-card border border-tara-sage/20 shadow-sm transition-all duration-500 group-hover:shadow-xl group-hover:shadow-tara-mint/15">
+            <div class="w-full h-80 bg-gradient-to-br from-emerald-100 via-teal-50 to-emerald-200 flex flex-col items-center justify-center p-6 text-center relative overflow-hidden">
+              <div class="w-24 h-24 rounded-full bg-white/70 backdrop-blur border border-white flex items-center justify-center text-tara-emerald shadow-inner text-4xl mb-3 group-hover:scale-110 transition duration-500">
+                <i class="fa-solid fa-ring"></i>
+              </div>
+              <span class="text-xs uppercase tracking-wider font-semibold text-tara-emerald">殊勝結緣品</span>
+              <h4 class="font-serif font-bold text-xl text-tara-deep mt-1">心想事成嘎屋</h4>
+              <p class="text-xs text-zinc-600 max-w-xs mt-2">隨身配戴，內藏經咒與上師加持甘露，恆時護祐平安。</p>
+            </div>
+            <div class="p-4 bg-white flex justify-between items-center text-xs">
+              <span class="text-zinc-400 font-medium">Sacred Gawu Box</span>
+              <span class="text-tara-emerald font-semibold flex items-center gap-1">查看細節 <i class="fa-solid fa-expand text-[10px]"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 項目 2 (高卡片) -->
+        <div class="masonry-item gallery-item group cursor-pointer reveal-item" data-category="sanctuary" onclick="openLightbox(1)">
+          <div class="relative overflow-hidden rounded-3xl bg-tara-card border border-tara-sage/20 shadow-sm transition-all duration-500 group-hover:shadow-xl group-hover:shadow-tara-mint/15">
+            <div class="w-full h-96 bg-gradient-to-t from-tara-deep via-tara-emerald to-teal-800 flex flex-col items-center justify-center p-8 text-center text-white relative">
+              <div class="absolute inset-0 bg-black/10"></div>
+              <div class="relative z-10">
+                <div class="w-20 h-20 mx-auto rounded-full bg-white/10 backdrop-blur border border-white/30 flex items-center justify-center text-3xl mb-4 group-hover:rotate-12 transition duration-500">
+                  <i class="fa-solid fa-torii-gate"></i>
+                </div>
+                <span class="text-xs tracking-widest text-tara-mint uppercase font-semibold">Sanctuary</span>
+                <h4 class="font-serif font-bold text-2xl mt-1 mb-2">祈福滿願壇城現場</h4>
+                <p class="text-xs text-zinc-200 max-w-xs mx-auto leading-relaxed">
+                  莊嚴法座與日夜長明的光明燈陣，為十方善信凝聚無上願力與慈悲加持。
+                </p>
+              </div>
+            </div>
+            <div class="p-4 bg-white flex justify-between items-center text-xs">
+              <span class="text-zinc-400 font-medium">Mandala Altar</span>
+              <span class="text-tara-emerald font-semibold flex items-center gap-1">查看細節 <i class="fa-solid fa-expand text-[10px]"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 項目 3 -->
+        <div class="masonry-item gallery-item group cursor-pointer reveal-item" data-category="ceremony" onclick="openLightbox(2)">
+          <div class="relative overflow-hidden rounded-3xl bg-tara-card border border-tara-sage/20 shadow-sm transition-all duration-500 group-hover:shadow-xl group-hover:shadow-tara-mint/15">
+            <div class="w-full h-72 bg-gradient-to-br from-amber-50 via-emerald-50 to-emerald-100 flex flex-col items-center justify-center p-6 text-center">
+              <div class="w-20 h-20 rounded-full bg-white/80 backdrop-blur flex items-center justify-center text-tara-gold text-3xl mb-3 group-hover:scale-105 transition">
+                <i class="fa-solid fa-hands-praying"></i>
+              </div>
+              <span class="text-xs uppercase tracking-wider font-semibold text-tara-emerald">法會活動</span>
+              <h4 class="font-serif font-bold text-xl text-tara-deep mt-1">新年滿願招財祈福大法會</h4>
+              <p class="text-xs text-zinc-600 max-w-xs mt-2">迎財源度母，增長家宅福運與世出世間資糧。</p>
+            </div>
+            <div class="p-4 bg-white flex justify-between items-center text-xs">
+              <span class="text-zinc-400 font-medium">Grand Puja Ceremony</span>
+              <span class="text-tara-emerald font-semibold flex items-center gap-1">查看細節 <i class="fa-solid fa-expand text-[10px]"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 項目 4 -->
+        <div class="masonry-item gallery-item group cursor-pointer reveal-item" data-category="amulet" onclick="openLightbox(3)">
+          <div class="relative overflow-hidden rounded-3xl bg-tara-card border border-tara-sage/20 shadow-sm transition-all duration-500 group-hover:shadow-xl group-hover:shadow-tara-mint/15">
+            <div class="w-full h-80 bg-gradient-to-tr from-green-100 via-teal-50 to-white flex flex-col items-center justify-center p-6 text-center">
+              <div class="w-20 h-20 rounded-full bg-tara-lightmint flex items-center justify-center text-tara-emerald text-3xl mb-3 group-hover:scale-110 transition">
+                <i class="fa-solid fa-wine-glass-empty"></i>
+              </div>
+              <span class="text-xs uppercase tracking-wider font-semibold text-tara-emerald">殊勝結緣品</span>
+              <h4 class="font-serif font-bold text-xl text-tara-deep mt-1">聚財滿願杯與福運香粉</h4>
+              <p class="text-xs text-zinc-600 max-w-xs mt-2">上乘沉香與特殊如意法寶共製，清淨磁場並聚攏富貴喜樂氣息。</p>
+            </div>
+            <div class="p-4 bg-white flex justify-between items-center text-xs">
+              <span class="text-zinc-400 font-medium">Prosperity Cup & Incense</span>
+              <span class="text-tara-emerald font-semibold flex items-center gap-1">查看細節 <i class="fa-solid fa-expand text-[10px]"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 項目 5 (高卡片) -->
+        <div class="masonry-item gallery-item group cursor-pointer reveal-item" data-category="ceremony" onclick="openLightbox(4)">
+          <div class="relative overflow-hidden rounded-3xl bg-tara-card border border-tara-sage/20 shadow-sm transition-all duration-500 group-hover:shadow-xl group-hover:shadow-tara-mint/15">
+            <div class="w-full h-96 bg-gradient-to-b from-teal-700 via-emerald-800 to-tara-deep flex flex-col items-center justify-center p-8 text-center text-white">
+              <div class="w-20 h-20 mx-auto rounded-full bg-white/10 backdrop-blur flex items-center justify-center text-3xl mb-4 group-hover:rotate-6 transition">
+                <i class="fa-solid fa-smog"></i>
+              </div>
+              <span class="text-xs tracking-widest text-tara-mint uppercase font-semibold">Special Rite</span>
+              <h4 class="font-serif font-bold text-2xl mt-1 mb-2">世界煙供日放天馬</h4>
+              <p class="text-xs text-zinc-200 max-w-xs mx-auto leading-relaxed">
+                廣行下煙供度亡與上供諸天，天馬旗隨風飄揚，利益虛空一切有情生靈。
+              </p>
+            </div>
+            <div class="p-4 bg-white flex justify-between items-center text-xs">
+              <span class="text-zinc-400 font-medium">Smoke Offering & Windhorse</span>
+              <span class="text-tara-emerald font-semibold flex items-center gap-1">查看細節 <i class="fa-solid fa-expand text-[10px]"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 項目 6 -->
+        <div class="masonry-item gallery-item group cursor-pointer reveal-item" data-category="amulet" onclick="openLightbox(5)">
+          <div class="relative overflow-hidden rounded-3xl bg-tara-card border border-tara-sage/20 shadow-sm transition-all duration-500 group-hover:shadow-xl group-hover:shadow-tara-mint/15">
+            <div class="w-full h-72 bg-gradient-to-br from-mint-50 via-slate-50 to-emerald-100 flex flex-col items-center justify-center p-6 text-center">
+              <div class="w-20 h-20 rounded-full bg-white/80 backdrop-blur flex items-center justify-center text-tara-emerald text-3xl mb-3 group-hover:scale-105 transition">
+                <i class="fa-solid fa-circle-notch"></i>
+              </div>
+              <span class="text-xs uppercase tracking-wider font-semibold text-tara-emerald">殊勝結緣品</span>
+              <h4 class="font-serif font-bold text-xl text-tara-deep mt-1">息增懷誅圓滿手環</h4>
+              <p class="text-xs text-zinc-600 max-w-xs mt-2">簡約時尚矽膠材質，蘊含四大佛行願力密意，運動與生活皆可隨身佩帶。</p>
+            </div>
+            <div class="p-4 bg-white flex justify-between items-center text-xs">
+              <span class="text-zinc-400 font-medium">Activity Wristband</span>
+              <span class="text-tara-emerald font-semibold flex items-center gap-1">查看細節 <i class="fa-solid fa-expand text-[10px]"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 燈箱預覽組件 (Lightbox Modal) ================= -->
+  <div id="lightbox" class="lightbox-overlay fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
+    <div class="bg-white rounded-3xl max-w-xl w-full p-8 shadow-2xl relative transform scale-95 transition-transform duration-300 border border-tara-sage/30" id="lightbox-content">
+      <button onclick="closeLightbox()" class="absolute top-5 right-5 w-10 h-10 rounded-full bg-zinc-100 hover:bg-zinc-200 text-zinc-600 flex items-center justify-center transition">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+      
+      <div id="lb-badge" class="inline-block px-3 py-1 bg-tara-lightmint text-tara-emerald rounded-full text-xs font-semibold mb-3">典藏品</div>
+      <h3 id="lb-title" class="text-2xl font-serif font-bold text-tara-deep mb-3">作品標題</h3>
+      <div id="lb-visual" class="h-48 rounded-2xl bg-gradient-to-r from-tara-lightmint to-emerald-100 flex items-center justify-center text-tara-emerald text-5xl mb-4">
+        <i class="fa-solid fa-sparkles"></i>
+      </div>
+      <p id="lb-desc" class="text-zinc-600 text-sm leading-relaxed mb-6">內容敘述</p>
+      
+      <div class="flex items-center justify-end gap-3 pt-4 border-t border-zinc-100">
+        <a href="#contact" onclick="closeLightbox()" class="px-6 py-2.5 rounded-full bg-tara-deep text-white text-xs font-semibold hover:bg-tara-emerald transition">
+          進一步結緣與洽詢
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= 法會與特色服務 (Services / Modules) ================= -->
+  <section id="services" class="py-24 px-6 md:px-12 bg-tara-card/40 relative">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center max-w-2xl mx-auto mb-16 reveal-item">
+        <span class="text-xs font-semibold tracking-widest text-tara-emerald uppercase bg-tara-lightmint px-3 py-1 rounded-full">Puja & Services</span>
+        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-tara-deep mt-3 mb-4">達拉常態祈福與法會活動</h2>
+        <p class="text-zinc-600 text-sm sm:text-base">遵循嚴謹藏密儀軌，由具德僧團與尊貴上師主法，利益一切法界眾生</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- 服務 1 -->
+        <div class="bg-white p-6 rounded-3xl border border-tara-sage/20 hover:border-tara-mint hover:shadow-xl hover:shadow-tara-mint/10 transition duration-300 flex flex-col justify-between reveal-item">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-tara-lightmint text-tara-emerald flex items-center justify-center text-xl mb-4">
+              <i class="fa-solid fa-dragon"></i>
+            </div>
+            <h3 class="font-serif font-bold text-lg text-tara-deep mb-2">龍王日供寶瓶</h3>
+            <p class="text-zinc-500 text-xs leading-relaxed">
+              適逢殊勝吉日向龍王供養加持寶瓶，祈請天候調順、化解水厄病痛，累積廣大世間善富財運。
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-zinc-100 flex items-center justify-between text-xs">
+            <span class="text-tara-emerald font-medium">每逢龍王吉日舉辦</span>
+            <i class="fa-solid fa-angle-right text-zinc-300"></i>
+          </div>
+        </div>
+
+        <!-- 服務 2 -->
+        <div class="bg-white p-6 rounded-3xl border border-tara-sage/20 hover:border-tara-mint hover:shadow-xl hover:shadow-tara-mint/10 transition duration-300 flex flex-col justify-between reveal-item">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-tara-lightmint text-tara-emerald flex items-center justify-center text-xl mb-4">
+              <i class="fa-solid fa-cake-candles"></i>
+            </div>
+            <h3 class="font-serif font-bold text-lg text-tara-deep mb-2">度母感恩慶生會</h3>
+            <p class="text-zinc-500 text-xs leading-relaxed">
+              同沐母性慈暉，齊聚持誦二十一度母讚頌文，感恩度母平日之護佑，同霑無上喜樂與法雨。
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-zinc-100 flex items-center justify-between text-xs">
+            <span class="text-tara-emerald font-medium">感恩祈願日</span>
+            <i class="fa-solid fa-angle-right text-zinc-300"></i>
+          </div>
+        </div>
+
+        <!-- 服務 3 -->
+        <div class="bg-white p-6 rounded-3xl border border-tara-sage/20 hover:border-tara-mint hover:shadow-xl hover:shadow-tara-mint/10 transition duration-300 flex flex-col justify-between reveal-item">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-tara-lightmint text-tara-emerald flex items-center justify-center text-xl mb-4">
+              <i class="fa-solid fa-shield-virus"></i>
+            </div>
+            <h3 class="font-serif font-bold text-lg text-tara-deep mb-2">息增懷誅除障法會</h3>
+            <p class="text-zinc-500 text-xs leading-relaxed">
+              專門對治事業不順、惡夢噩耗、身心不明重擔，藉由本尊威猛智慧之火，焚盡無明遮障。
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-zinc-100 flex items-center justify-between text-xs">
+            <span class="text-tara-emerald font-medium">季度專題除障</span>
+            <i class="fa-solid fa-angle-right text-zinc-300"></i>
+          </div>
+        </div>
+
+        <!-- 服務 4 -->
+        <div class="bg-white p-6 rounded-3xl border border-tara-sage/20 hover:border-tara-mint hover:shadow-xl hover:shadow-tara-mint/10 transition duration-300 flex flex-col justify-between reveal-item">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-tara-lightmint text-tara-emerald flex items-center justify-center text-xl mb-4">
+              <i class="fa-solid fa-feather-pointed"></i>
+            </div>
+            <h3 class="font-serif font-bold text-lg text-tara-deep mb-2">超薦度亡與下煙供</h3>
+            <p class="text-zinc-500 text-xs leading-relaxed">
+              慈悲利冥，將無量香粉與焦煙功德施與歷代冤親債主及六道孤魂，解冤釋結、離苦得樂。
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-zinc-100 flex items-center justify-between text-xs">
+            <span class="text-tara-emerald font-medium">功德廣大圓滿</span>
+            <i class="fa-solid fa-angle-right text-zinc-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 心靈見證 (Testimonials / Stories) ================= -->
+  <section id="testimonials" class="py-24 px-6 md:px-12 bg-white">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center max-w-2xl mx-auto mb-16 reveal-item">
+        <span class="text-xs font-semibold tracking-widest text-tara-emerald uppercase bg-tara-lightmint px-3 py-1 rounded-full">Devotee Stories</span>
+        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-tara-deep mt-3 mb-4">度母故事與感應見證</h2>
+        <p class="text-zinc-600 text-sm">來自達拉弟子的真摯感恩分享，見證不可思議的慈悲轉化力量</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- 見證 1 -->
+        <div class="p-8 rounded-3xl bg-tara-card border border-tara-sage/20 relative reveal-item">
+          <div class="text-tara-mint text-3xl mb-4"><i class="fa-solid fa-quote-left"></i></div>
+          <p class="text-zinc-600 text-sm leading-relaxed mb-6 italic">
+            「在創業最低谷時來到達拉壇城認供祈福，上師的開示如同一記醍醐灌頂，幾個月內事業迎來了全新轉機，內心也前所未有地清明踏實。」
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-tara-lightmint text-tara-emerald flex items-center justify-center font-bold text-sm">林</div>
+            <div>
+              <div class="font-serif font-bold text-sm text-tara-deep">林小姐 / 科技業創辦人</div>
+              <div class="text-[11px] text-zinc-400">認供壇城滿願光明燈</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 見證 2 -->
+        <div class="p-8 rounded-3xl bg-tara-card border border-tara-sage/20 relative reveal-item">
+          <div class="text-tara-mint text-3xl mb-4"><i class="fa-solid fa-quote-left"></i></div>
+          <p class="text-zinc-600 text-sm leading-relaxed mb-6 italic">
+            「隨身配戴心想事成嘎屋，幾次在重大危機關頭化險為夷。那種被度母母親般深厚慈悲溫柔包圍的踏實感，是我每天力量的源泉。」
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-tara-lightmint text-tara-emerald flex items-center justify-center font-bold text-sm">陳</div>
+            <div>
+              <div class="font-serif font-bold text-sm text-tara-deep">陳先生 / 自由設計師</div>
+              <div class="text-[11px] text-zinc-400">殊勝嘎屋法寶結緣信眾</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 見證 3 -->
+        <div class="p-8 rounded-3xl bg-tara-card border border-tara-sage/20 relative reveal-item">
+          <div class="text-tara-mint text-3xl mb-4"><i class="fa-solid fa-quote-left"></i></div>
+          <p class="text-zinc-600 text-sm leading-relaxed mb-6 italic">
+            「參加了達拉心靈成長課與度母共修，學會了如何把慈悲智慧落實在家庭溝通中。困擾多年的緊繃關係終於如暖陽融雪般化解。」
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-tara-lightmint text-tara-emerald flex items-center justify-center font-bold text-sm">張</div>
+            <div>
+              <div class="font-serif font-bold text-sm text-tara-deep">張老師 / 心理諮商師</div>
+              <div class="text-[11px] text-zinc-400">心靈成長修持共修學員</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 聯絡參贊與壇城交通 (Contact & Info) ================= -->
+  <section id="contact" class="py-24 px-6 md:px-12 bg-tara-mesh relative border-t border-tara-sage/20">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <!-- 交通與壇城聯絡資訊 (依照原有網站資訊忠實呈現) -->
+        <div class="lg:col-span-5 reveal-item">
+          <div class="inline-block px-3 py-1 bg-tara-lightmint text-tara-emerald rounded-full text-xs font-semibold uppercase mb-3">
+            Visit & Sanctuary
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-serif font-bold text-tara-deep mb-6">跟隨達拉度母・共沐法雨</h2>
+          
+          <div class="space-y-6 text-sm text-zinc-600">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-full bg-white shadow-sm border border-tara-sage/30 flex items-center justify-center text-tara-emerald shrink-0">
+                <i class="fa-solid fa-location-dot"></i>
+              </div>
+              <div>
+                <div class="font-bold text-tara-deep mb-1">達拉地址</div>
+                <p>台北市大安區忠孝東路四段177號8樓之2（頂呱呱忠孝店旁，羅馬大廈８樓）</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-full bg-white shadow-sm border border-tara-sage/30 flex items-center justify-center text-tara-emerald shrink-0">
+                <i class="fa-solid fa-train-subway"></i>
+              </div>
+              <div>
+                <div class="font-bold text-tara-deep mb-1">捷運交通指引</div>
+                <p>搭乘捷運板南線至「忠孝敦化站」1 號出口，步行約 1 分鐘即可抵達。</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-full bg-white shadow-sm border border-tara-sage/30 flex items-center justify-center text-tara-emerald shrink-0">
+                <i class="fa-solid fa-bus"></i>
+              </div>
+              <div>
+                <div class="font-bold text-tara-deep mb-1">公車交通資訊</div>
+                <p>捷運忠孝敦化站步行約 1 分鐘 / 忠孝敦化路口步行約 3 分鐘。</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-full bg-white shadow-sm border border-tara-sage/30 flex items-center justify-center text-tara-emerald shrink-0">
+                <i class="fa-solid fa-globe"></i>
+              </div>
+              <div>
+                <div class="font-bold text-tara-deep mb-1">官方網址</div>
+                <p class="font-mono text-tara-emerald font-semibold">www.tara.com.tw</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 祈福認供留言諮詢表單 -->
+        <div class="lg:col-span-7 reveal-item">
+          <div class="bg-white rounded-3xl p-8 sm:p-10 border border-tara-sage/30 shadow-xl shadow-tara-mint/5">
+            <h3 class="font-serif font-bold text-2xl text-tara-deep mb-2">祈福滿願・法會參贊登記諮詢</h3>
+            <p class="text-xs text-zinc-500 mb-8">填寫您的心願祈請，壇城志工將親切為您安排點燈認供與祈福回向事宜。</p>
+
+            <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-semibold text-zinc-600 mb-1">姓名 / 大名</label>
+                  <input type="text" required placeholder="如：林祈福" class="w-full px-4 py-3 rounded-2xl bg-tara-card border border-tara-sage/20 focus:border-tara-emerald focus:bg-white focus:outline-none text-sm transition">
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-zinc-600 mb-1">生肖 / 農曆生辰（選填）</label>
+                  <input type="text" placeholder="如：龍年、農曆八月" class="w-full px-4 py-3 rounded-2xl bg-tara-card border border-tara-sage/20 focus:border-tara-emerald focus:bg-white focus:outline-none text-sm transition">
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-semibold text-zinc-600 mb-1">聯絡電話</label>
+                  <input type="tel" required placeholder="0912-345-678" class="w-full px-4 py-3 rounded-2xl bg-tara-card border border-tara-sage/20 focus:border-tara-emerald focus:bg-white focus:outline-none text-sm transition">
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-zinc-600 mb-1">意向諮詢項目</label>
+                  <select class="w-full px-4 py-3 rounded-2xl bg-tara-card border border-tara-sage/20 focus:border-tara-emerald focus:bg-white focus:outline-none text-sm transition text-zinc-700">
+                    <option>祈福滿願壇城認供點燈</option>
+                    <option>殊勝結緣品（嘎屋 / 滿願杯）</option>
+                    <option>新年與專案法會參贊</option>
+                    <option>達拉心靈成長修持課</option>
+                    <option>親臨壇城參拜預約</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-zinc-600 mb-1">祈願心意或諮詢事項</label>
+                <textarea rows="4" placeholder="請簡述您的祈願目標或想了解的法寶事宜..." class="w-full px-4 py-3 rounded-2xl bg-tara-card border border-tara-sage/20 focus:border-tara-emerald focus:bg-white focus:outline-none text-sm transition"></textarea>
+              </div>
+
+              <button type="submit" class="w-full py-3.5 rounded-2xl bg-tara-deep text-white font-medium hover:bg-tara-emerald transition shadow-lg shadow-tara-deep/20 flex items-center justify-center gap-2">
+                <span>送出祈願諮詢表單</span>
+                <i class="fa-solid fa-paper-plane text-xs"></i>
+              </button>
+            </form>
+
+            <div id="form-msg" class="hidden mt-4 p-4 rounded-2xl bg-emerald-50 text-tara-emerald border border-emerald-200 text-xs font-medium text-center">
+              願度母加持您！我們已收到您的祈願諮詢，將由專人儘速與您聯繫。
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 頁尾 FOOTER ================= -->
+  <footer class="bg-tara-deep text-white py-16 px-6 md:px-12 border-t border-white/10">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+        <div class="md:col-span-1">
+          <div class="font-serif font-bold text-2xl tracking-wider mb-2 flex items-center gap-2">
+            <span>TARA 達拉度母</span>
+          </div>
+          <p class="text-xs text-zinc-300 leading-relaxed mb-4">
+            清淨傳承・度母慈悲・心靈覺察・滿願壇城。<br>
+            以現代清雅美學，接引每顆渴望安住的心。
+          </p>
+          <div class="flex items-center space-x-3 text-sm text-zinc-300">
+            <a href="https://www.tara.com.tw" target="_blank" class="w-8 h-8 rounded-full bg-white/10 hover:bg-tara-mint flex items-center justify-center transition"><i class="fa-solid fa-globe"></i></a>
+            <a href="#" target="_blank" class="w-8 h-8 rounded-full bg-white/10 hover:bg-tara-mint flex items-center justify-center transition"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" target="_blank" class="w-8 h-8 rounded-full bg-white/10 hover:bg-tara-mint flex items-center justify-center transition"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" target="_blank" class="w-8 h-8 rounded-full bg-white/10 hover:bg-tara-mint flex items-center justify-center transition"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-xs uppercase tracking-widest text-tara-mint font-semibold mb-4">壇城導覽</h4>
+          <ul class="space-y-2 text-xs text-zinc-300">
+            <li><a href="#about" class="hover:text-white transition">品牌源起與尊貴上師</a></li>
+            <li><a href="#philosophy" class="hover:text-white transition">祈福滿願壇城認供</a></li>
+            <li><a href="#gallery" class="hover:text-white transition">心想事成嘎屋與結緣品</a></li>
+            <li><a href="#services" class="hover:text-white transition">法會活動與心靈課</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-xs uppercase tracking-widest text-tara-mint font-semibold mb-4">法會與共修</h4>
+          <ul class="space-y-2 text-xs text-zinc-300">
+            <li><a href="#services" class="hover:text-white transition">新年滿願祈福大法會</a></li>
+            <li><a href="#services" class="hover:text-white transition">世界煙供日放天馬修煙供</a></li>
+            <li><a href="#services" class="hover:text-white transition">二十一度母薈供共修</a></li>
+            <li><a href="#services" class="hover:text-white transition">龍王日供龍王寶瓶</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-xs uppercase tracking-widest text-tara-mint font-semibold mb-4">正名標記與版權</h4>
+          <p class="text-xs text-zinc-300 leading-relaxed mb-3">
+            官方唯一網址：<br>
+            <a href="https://www.tara.com.tw" class="text-tara-mint hover:underline font-mono">www.tara.com.tw</a>
+          </p>
+          <div class="text-[11px] text-zinc-400">
+            台北市大安區忠孝東路四段177號8樓之2<br>
+            捷運忠孝敦化站 1 號出口 (羅馬大廈)
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between text-xs text-zinc-400 gap-4">
+        <div>
+          © 2026 TARA 達拉度母. All rights reserved. 
+        </div>
+        <div class="flex items-center space-x-6">
+          <a href="#hero" class="hover:text-tara-mint transition">回頂端 <i class="fa-solid fa-arrow-up ml-1"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= Vanilla JavaScript 互動邏輯 ================= -->
+  <script>
+    // 1. 滾動淡入顯現效果 (Scroll Reveal Animation via IntersectionObserver)
+    document.addEventListener('DOMContentLoaded', () => {
+      const revealItems = document.querySelectorAll('.reveal-item');
+      
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -40px 0px',
+        threshold: 0.12
+      };
+
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      revealItems.forEach((el, index) => {
+        // 交錯延遲微調
+        const delay = (index % 4) * 0.1;
+        el.style.transitionDelay = `${delay}s`;
+        revealObserver.observe(el);
+      });
+
+      // 2. 瀑布流分類切換 (Masonry Filter Logic)
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const galleryItems = document.querySelectorAll('.gallery-item');
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          // 切換按鈕激活樣式
+          filterBtns.forEach(b => {
+            b.classList.remove('active', 'bg-tara-deep', 'text-white');
+            b.classList.add('bg-tara-card', 'text-zinc-600');
+          });
+          btn.classList.add('active', 'bg-tara-deep', 'text-white');
+          btn.classList.remove('bg-tara-card', 'text-zinc-600');
+
+          const filter = btn.getAttribute('data-filter');
+
+          galleryItems.forEach(item => {
+            const category = item.getAttribute('data-category');
+            if (filter === 'all' || category === filter) {
+              item.style.display = 'block';
+              setTimeout(() => {
+                item.style.opacity = '1';
+                item.style.transform = 'translateY(0) scale(1)';
+              }, 50);
+            } else {
+              item.style.opacity = '0';
+              item.style.transform = 'translateY(20px) scale(0.96)';
+              setTimeout(() => {
+                item.style.display = 'none';
+              }, 300);
+            }
+          });
+        });
+      });
+
+      // 3. 移動端選單切換
+      const mobileToggle = document.getElementById('mobile-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const mobileLinks = document.querySelectorAll('.mobile-link');
+
+      mobileToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        mobileMenu.classList.toggle('flex');
+      });
+
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+          mobileMenu.classList.remove('flex');
+        });
+      });
+    });
+
+    // 4. 典藏品燈箱資料 (Lightbox Data & Logic)
+    const galleryData = [
+      {
+        title: "心想事成嘎屋 (Sacred Gawu Box)",
+        badge: "殊勝結緣品",
+        icon: "fa-ring",
+        desc: "嘎屋為密宗藏系最殊勝的隨身壇城法寶。本品內藏度母心咒卷宗、聖地甘露丸與尊貴上師殊勝加持聖物。隨身攜帶，可獲得度母二十四小時不間斷的護持，避開橫禍障礙，讓善願迅速成辦。"
+      },
+      {
+        title: "祈福滿願壇城 (Mandala Altar)",
+        badge: "度母壇城",
+        icon: "fa-torii-gate",
+        desc: "依古密法儀軌如法開光之神諭度母清淨壇城。中央供奉二十一度母聖像，日夜長燃酥油明燈。開放十方善信隨喜認供祈福，為自我與全家祈求增益福智、元辰光彩、障礙消除。"
+      },
+      {
+        title: "新年滿願招財祈福大法會",
+        badge: "祈福法會",
+        icon: "fa-hands-praying",
+        desc: "每年春節初一至十五期間啟建。迎請財源度母與二十一度母眷屬蒞臨，修誦金剛勝法，祈請國泰民安、家戶納福招財、萬物滋榮、事業無礙興盛。"
+      },
+      {
+        title: "聚財滿願杯與福運香粉",
+        badge: "殊勝結緣品",
+        icon: "fa-wine-glass-empty",
+        desc: "結合五方佛土加持藥材與頂級藏香沉香粉，承裝於具足吉祥圖騰之滿願杯中。每日清晨於壇城或辦公處所淨香供養，散發清新芬芳，清淨身心濁氣，招引貴人善緣。"
+      },
+      {
+        title: "世界煙供日放天馬修煙供",
+        badge: "殊勝祭儀",
+        icon: "fa-smog",
+        desc: "於藏曆吉日舉行之殊勝大煙供。將包含五穀、中藥、七寶甘露之供品燃點，藉由香煙裊裊上供諸佛菩薩、天龍八部，下施六道貧乏有情，解冤禳災，迅速積聚廣大福德。"
+      },
+      {
+        title: "息增懷誅圓滿手環",
+        badge: "隨身法寶",
+        icon: "fa-circle-notch",
+        desc: "以白（息災）、黃（增益）、紅（懷愛）、綠（降伏）象徵度母四大事業願力。簡約親膚的現代工藝設計，日常運動、辦公與休憩時皆可自然佩戴，隨行隨護。"
+      }
+    ];
+
+    function openLightbox(index) {
+      const data = galleryData[index];
+      if (!data) return;
+
+      document.getElementById('lb-title').innerText = data.title;
+      document.getElementById('lb-badge').innerText = data.badge;
+      document.getElementById('lb-desc').innerText = data.desc;
+      
+      const visualContainer = document.getElementById('lb-visual');
+      visualContainer.innerHTML = `<i class="fa-solid ${data.icon} text-5xl"></i>`;
+
+      const lightbox = document.getElementById('lightbox');
+      const content = document.getElementById('lightbox-content');
+      
+      lightbox.classList.remove('opacity-0', 'pointer-events-none');
+      lightbox.classList.add('opacity-100', 'pointer-events-auto');
+      content.classList.remove('scale-95');
+      content.classList.add('scale-100');
+    }
+
+    function closeLightbox() {
+      const lightbox = document.getElementById('lightbox');
+      const content = document.getElementById('lightbox-content');
+      
+      lightbox.classList.add('opacity-0', 'pointer-events-none');
+      lightbox.classList.remove('opacity-100', 'pointer-events-auto');
+      content.classList.add('scale-95');
+      content.classList.remove('scale-100');
+    }
+
+    // 點擊背景關閉燈箱
+    document.getElementById('lightbox').addEventListener('click', (e) => {
+      if (e.target.id === 'lightbox') {
+        closeLightbox();
+      }
+    });
+
+    // 5. 表單提交模擬
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      const msg = document.getElementById('form-msg');
+      msg.classList.remove('hidden');
+      document.getElementById('contact-form').reset();
+      setTimeout(() => {
+        msg.classList.add('hidden');
+      }, 5000);
+    }
+  </script>
+</body>
+</html>
